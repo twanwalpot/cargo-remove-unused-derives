@@ -1,0 +1,43 @@
+[package]
+name = "cargo-remove-unused-derives"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.91"
+authors = ["Twan Walpot <twanwalpot@gmail.com>"]
+description = "Cargo subcommand that removes unused derives from your project, guided by the compiler."
+license = "MIT"
+repository = "https://github.com/twanwalpot/cargo-remove-unused-derives"
+readme = "README.md"
+keywords = ["cargo", "cargo-subcommand", "derive", "lint", "cleanup"]
+categories = ["development-tools::cargo-plugins", "command-line-utilities"]
+exclude = ["rust-toolchain.toml", "rustfmt.toml"]
+
+[dependencies]
+cargo_metadata = "0.23"
+clap = { version = "4.6", features = ["derive"] }
+ignore = "0.4"
+proc-macro2 = { version = "1.0", features = ["span-locations"] }
+syn = { version = "2.0", features = ["full"] }
+tempfile = "3"
+
+[dev-dependencies]
+assert_cmd = "2"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+
+doc_markdown                       = "warn"
+implicit_clone                     = "warn"
+inefficient_to_string              = "warn"
+manual_let_else                    = "warn"
+match_same_arms                    = "warn"
+needless_continue                  = "warn"
+redundant_closure_for_method_calls = "warn"
+redundant_else                     = "warn"
+semicolon_if_nothing_returned      = "warn"
+single_match_else                  = "warn"
+unnested_or_patterns               = "warn"
